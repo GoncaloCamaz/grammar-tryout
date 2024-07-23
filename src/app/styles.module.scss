@@ -10,6 +10,9 @@
 	}
 
 	.ActionsContainer {
+		display: flex;
+		flex-direction: column;
+		gap: 50px;
 		width: 50%;
 		height: 100%;
 	}

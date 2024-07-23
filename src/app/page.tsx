@@ -6,6 +6,7 @@ import { CodeiumEditor } from '@codeium/react-code-editor';
 import { ItemsList } from '@/components/ItemsList';
 import { IonButton, IonInput } from '@ionic/react';
 import { useCallback, useState } from 'react';
+import { UrnParser } from '@/grammar';
 
 export default function Home() {
 	const [codeEditorContent, setCodeEditorContent] = useState('');
@@ -16,7 +17,9 @@ export default function Home() {
 	}, []);
 
 	const handleSubmit = useCallback(() => {
-		setCodeEditorContent(urnContent);
+		const parseResult = UrnParser.parseKRN(urnContent);
+
+		setCodeEditorContent(JSON.stringify(parseResult, null, '\t'));
 	}, [urnContent]);
 
 	const handleReset = useCallback(() => {
